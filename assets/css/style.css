@@ -483,19 +483,26 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .rcard .rc-prev { font-size: 14px; color: rgba(244,240,237,.62); margin-top: 14px; }
 .rcard .rc-prev b { color: rgba(244,240,237,.85); font-weight: 700; }
 
-/* ── LONGFORM: grote cijfers (balken) met speels overlappende telefoons ── */
-.lf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px,6vw,92px); align-items: end; }
-@media (max-width: 820px){ .lf-grid { grid-template-columns: 1fr; gap: 60px; } }
-.lf-item { position: relative; display: flex; flex-direction: column; align-items: center; }
-.lf-item .phone { position: relative; z-index: 2; }
-.lf-card.rcard { position: relative; z-index: 1; width: min(100%, 460px);
-  margin-top: calc(-1 * clamp(40px,5vw,68px)); padding-top: clamp(48px,5.6vw,82px); }
-.lf-card .rc-num { font-size: clamp(72px,10vw,128px); font-variant-numeric: tabular-nums; }
+/* ── LONGFORM: grote cijfers gecentreerd, telefoons er speels omheen ── */
+.lf-stage { position: relative; min-height: clamp(440px,58vh,560px); display: flex; align-items: center; justify-content: center; }
+.lf-stage .reach-grid { max-width: 720px; width: 100%; margin: 0 auto; gap: clamp(20px,3vw,44px); position: relative; z-index: 1; }
+.lf-stage .rcard { overflow: visible; }
+.lf-stage .rc-num { font-size: clamp(46px,5.4vw,74px); font-variant-numeric: tabular-nums; }
+.lf-stage .lf-phone { position: absolute; z-index: 3; }
+.lf-stage .lf-phone.tilt-yt { left: -1%; top: 0; transform: rotate(-5deg); }
+.lf-stage .lf-phone.tilt-sp { right: -1%; bottom: 0; transform: rotate(5deg); }
+@media (max-width: 980px){
+  .lf-stage { display: flex; flex-direction: column; align-items: center; gap: 28px; min-height: 0; }
+  .lf-stage .lf-phone { position: static; }
+  .lf-stage .lf-phone.tilt-yt { transform: rotate(-4deg); order: 1; }
+  .lf-stage .reach-grid { order: 2; }
+  .lf-stage .lf-phone.tilt-sp { transform: rotate(4deg); order: 3; }
+}
 
 /* telefoon-frame */
 .phone {
-  position: relative; width: clamp(208px,23vw,280px); aspect-ratio: 9 / 19;
-  background: #111; border-radius: clamp(28px,3vw,40px); padding: clamp(8px,1vw,12px);
+  position: relative; width: clamp(180px,20vw,238px); aspect-ratio: 9 / 19;
+  background: #111; border-radius: clamp(26px,2.6vw,36px); padding: clamp(7px,.9vw,11px);
   box-shadow: 0 30px 70px rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.12);
 }
 .phone::before {
@@ -503,7 +510,7 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
   width: 36%; height: clamp(13px,1.5vw,19px); background: #111; border-radius: 0 0 12px 12px; z-index: 3;
 }
 /* liggende (horizontale) telefoon voor de YouTube-video */
-.phone.landscape { width: clamp(300px,38vw,460px); aspect-ratio: 18 / 9; }
+.phone.landscape { width: clamp(260px,30vw,380px); aspect-ratio: 18 / 9; }
 .phone.landscape::before {
   top: 50%; left: clamp(8px,1vw,12px); transform: translateY(-50%);
   width: clamp(13px,1.5vw,19px); height: 34%; border-radius: 0 12px 12px 0;
@@ -511,8 +518,8 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .tilt-yt { transform: rotate(-5deg); }
 .tilt-sp { transform: rotate(5deg); }
 .phone-screen { position: relative; width: 100%; height: 100%; border-radius: clamp(20px,2.2vw,30px); overflow: hidden; background: #000; }
-.phone-screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
-.phone.landscape iframe { pointer-events: none; } /* video is decoratief; geen hover-chrome */
+.phone-screen iframe, .phone-screen video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.phone-screen video { object-fit: cover; pointer-events: none; } /* video is decoratief */
 
 /* eigen, altijd-zichtbare YouTube-achtige overlay (zonder logo/CC/volume) */
 .yt-ui { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 0 clamp(10px,1.4vw,16px) clamp(7px,1vw,11px);
