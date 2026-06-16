@@ -567,6 +567,15 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 }
 .framed-photo .fp img { width: 100%; height: clamp(300px, 52vh, 560px); object-fit: cover; display: block; }
 
+/* split-foto: breedbeeld foto gecentreerd over een 2-kleuren-splitsing */
+.split-photo { background: linear-gradient(180deg, var(--paper) 0 50%, var(--green) 50% 100%); overflow: hidden; }
+.split-photo .wrap { padding: clamp(50px,7vw,98px) 28px; }
+.sp-card {
+  margin: 0 auto; max-width: 940px; border-radius: 20px; overflow: hidden;
+  border: 9px solid var(--white); box-shadow: 0 32px 74px rgba(0,0,0,.24);
+}
+.sp-card img { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: cover; }
+
 /* vooruitblik speelse thumbnails */
 .vb-shots { display: flex; gap: 0; justify-content: center; margin-top: clamp(34px,5vw,60px); }
 .vb-shots .vb {
