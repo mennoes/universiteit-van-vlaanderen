@@ -778,17 +778,21 @@ footer.site {
 /* ══════════════════════════════════════════════════════════════
    SLIDEDECK MODE — elke sectie = volledig scherm; snap + pijltjes
    ══════════════════════════════════════════════════════════════ */
-html { scroll-snap-type: y proximity; }
-body > header.hero,
-body > section,
-body > footer.site { scroll-snap-align: start; scroll-snap-stop: always; }
-/* elke inhoud-slide minstens een scherm hoog, inhoud verticaal gecentreerd
-   (min-height i.p.v. height -> lange inhoud groeit gewoon door, nooit afgesneden) */
-section.block,
-.split-photo,
-.trailer,
-.partners,
-.cta-band { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+/* Slidedeck alleen op laptop/desktop. Op mobiel: gewoon vrij doorscrollen,
+   zodat alle info zichtbaar/bereikbaar is (geen snap die over inhoud springt). */
+@media (min-width: 860px) {
+  html { scroll-snap-type: y proximity; }
+  body > header.hero,
+  body > section,
+  body > footer.site { scroll-snap-align: start; scroll-snap-stop: always; }
+  /* elke inhoud-slide minstens een scherm hoog, inhoud verticaal gecentreerd
+     (min-height i.p.v. height -> lange inhoud groeit gewoon door, nooit afgesneden) */
+  section.block,
+  .split-photo,
+  .trailer,
+  .partners,
+  .cta-band { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+}
 
 /* deck-bediening rechtsonder */
 .deck-ui {
@@ -806,5 +810,6 @@ section.block,
 .deck-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .deck-count { font-size: 13px; font-weight: 700; color: var(--paper); padding: 0 7px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .deck-count b { color: var(--purple); }
-@media (max-width: 600px){ .deck-ui { right: 10px; bottom: 10px; } .deck-count { display: none; } }
+/* geen deck-bediening op mobiel (daar scroll je gewoon vrij door) */
+@media (max-width: 859px){ .deck-ui { display: none; } }
 @media print { .deck-ui { display: none; } }
