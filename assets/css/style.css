@@ -428,7 +428,8 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .pub-photo { position: relative; }
 .pub-photo img {
   width: 100%; height: clamp(340px, 50vh, 540px); object-fit: cover;
-  border-radius: 20px; box-shadow: 0 14px 44px rgba(0,0,0,.32); display: block;
+  border-radius: 16px; box-shadow: 0 24px 54px rgba(0,0,0,.40); display: block;
+  border: 8px solid var(--white); transform: rotate(2.5deg);
 }
 
 /* ── REACH / COMPARISON ─────────────────────────────────────── */
@@ -610,8 +611,8 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .barpair { margin-bottom: clamp(18px, 2.4vw, 28px); }
 .barpair .bp-name { font-weight: 700; font-size: clamp(15px,1.4vw,18px); color: var(--green); margin-bottom: 9px; display: flex; align-items: center; gap: 9px; }
 /* vaste getalkolom -> beide banen exact even breed (anders lijkt 'nu' korter) */
-.bp-line { display: grid; grid-template-columns: 46px 1fr 104px; align-items: center; gap: 13px; margin-bottom: 7px; }
-.bp-when { font-size: 12px; font-weight: 700; letter-spacing: .03em; color: var(--grey-500); text-align: right; }
+.bp-line { display: grid; grid-template-columns: 90px 1fr 104px; align-items: center; gap: 13px; margin-bottom: 7px; }
+.bp-when { font-size: 11px; font-weight: 700; letter-spacing: .02em; color: var(--grey-500); text-align: right; line-height: 1.15; }
 .bp-track { position: relative; height: 8px; background: var(--paper-mid); border-radius: 5px; }
 .bp-track.tall { height: 15px; }
 .bp-fill { height: 100%; width: 0; border-radius: 5px; transition: width 1.7s var(--ease-snap); }
@@ -622,7 +623,7 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .bp-v.old { font-size: 15px; color: var(--grey-500); }
 .bp-v.new { font-size: clamp(22px, 2.4vw, 34px); color: var(--green); line-height: .9; }
 .barpair:not(.strong) .bp-v.new { color: var(--green-elec); }
-@media (max-width: 600px){ .bp-line { grid-template-columns: 38px 1fr 76px; gap: 9px; } .bp-v.new { font-size: 23px; } }
+@media (max-width: 600px){ .bp-line { grid-template-columns: 70px 1fr 72px; gap: 9px; } .bp-v.new { font-size: 23px; } }
 
 /* ── PUBLIEK (gender) on night ──────────────────────────────── */
 
