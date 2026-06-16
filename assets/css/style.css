@@ -489,7 +489,7 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .lf-stage .rc-num { font-size: clamp(64px,8.4vw,108px); font-variant-numeric: tabular-nums; }
 .lf-stage .rcard .rc-plat { font-size: clamp(15px,1.6vw,20px); }
 .lf-stage .rcard .rc-prev { font-size: clamp(15px,1.5vw,18px); }
-.lf-stage .takeaways { margin: clamp(30px,4vw,52px) auto 0; max-width: 860px; position: relative; z-index: 1; }
+.lf-stage .takeaways { margin: clamp(30px,4vw,52px) 0 0; max-width: 860px; position: relative; z-index: 1; }
 /* telefoons speels in de hoeken, raken de cijfers niet */
 .lf-stage .lf-phone { position: absolute; z-index: 3; }
 .lf-stage .lf-phone.tilt-yt { left: -29%; top: 7%; transform: rotate(-5deg); animation: floatYt 7s ease-in-out infinite; }
