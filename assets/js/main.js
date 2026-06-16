@@ -343,6 +343,17 @@
   window.addEventListener("resize", scheduleFit);
   window.addEventListener("load", fitSlides);
 
+  /* ── autoplay van (gedempte) video's forceren ──────────────── */
+  function playVideos() {
+    [].forEach.call(document.querySelectorAll("video"), function (v) {
+      v.muted = true; v.defaultMuted = true;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    });
+  }
+  playVideos();
+  window.addEventListener("load", playVideos);
+
   /* ── initial paint ─────────────────────────────────────────── */
   fitSlides();
   refreshPara();
