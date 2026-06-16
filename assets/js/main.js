@@ -343,18 +343,22 @@
   window.addEventListener("resize", scheduleFit);
   window.addEventListener("load", fitSlides);
 
-  /* ── trailer pas (gedempt) afspelen zodra de slide in beeld komt ─ */
+  /* ── trailer pas (gedempt) afspelen zodra de slide in beeld komt ─
+        en verder spelen waar hij gebleven was (niet opnieuw vanaf 0) ── */
   (function () {
     var vid = document.querySelector(".lf-video");
     if (!vid) return;
     vid.muted = true; vid.defaultMuted = true;
     var slide = vid.closest("section") || vid;
-    function tryPlay() { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+    var resumeAt = 0;
+    function tryPlay() {
+      try { if (resumeAt && Math.abs((vid.currentTime || 0) - resumeAt) > 1) vid.currentTime = resumeAt; } catch (e) {}
+      var p = vid.play(); if (p && p.catch) p.catch(function () {});
+    }
+    function hold() { resumeAt = vid.currentTime || resumeAt; vid.pause(); }
     if ("IntersectionObserver" in window) {
       var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) tryPlay(); else vid.pause();
-        });
+        entries.forEach(function (e) { if (e.isIntersecting) tryPlay(); else hold(); });
       }, { threshold: 0.45 });
       io.observe(slide);
     } else { tryPlay(); }
