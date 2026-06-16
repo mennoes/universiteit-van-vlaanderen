@@ -500,6 +500,11 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
   .lf-stage .lf-phone.tilt-yt { animation: none; transform: rotate(-5deg); }
   .lf-stage .lf-phone.tilt-sp { animation: none; transform: rotate(5deg); }
 }
+/* pijltjes vanaf de titels naar de telefoons */
+.lf-arrow { position: absolute; z-index: 2; width: clamp(82px,9vw,134px); pointer-events: none; }
+.lf-arrow-l { left: 1%; top: 30%; transform: scaleX(-1) rotate(8deg); }
+.lf-arrow-r { right: 0%; top: 4%; transform: scaleY(-1) rotate(-8deg); }
+@media (max-width: 1100px){ .lf-arrow { display: none; } }
 @media (max-width: 1100px){
   .lf-stage { display: flex; flex-direction: column; align-items: center; gap: 30px; }
   .lf-stage .lf-phone { position: static; }
