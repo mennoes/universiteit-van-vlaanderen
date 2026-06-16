@@ -333,7 +333,7 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .section-head { max-width: 760px; margin-bottom: clamp(40px, 6vw, 72px); }
 .section-head h2 {
   font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
-  font-size: clamp(42px, 7vw, 92px); line-height: .92; letter-spacing: -.02em;
+  font-size: clamp(50px, 8.2vw, 112px); line-height: .9; letter-spacing: -.02em;
   margin: 0; color: var(--green);
 }
 .deep .section-head h2, .night .section-head h2 { color: var(--paper); }
@@ -347,6 +347,7 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
   color: var(--green-500); letter-spacing: .03em; display: block; margin-bottom: 18px;
 }
 .deep .section-head .num-mark { color: var(--green-glow); }
+.night .section-head .num-mark { color: var(--paper); }
 /* slides zonder losse kop: num-mark fungeert als titel, content schuift omhoog */
 .section-head.nohead { margin-bottom: clamp(22px, 3vw, 40px); }
 .section-head.nohead .num-mark { margin-bottom: 0; font-size: clamp(20px, 2.3vw, 31px); }
@@ -515,11 +516,12 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .shorts-hero { display: flex; flex-direction: column; gap: clamp(40px,6vw,68px); }
 .sh-top { display: grid; grid-template-columns: auto 1fr; gap: clamp(34px,6vw,96px); align-items: center; }
 @media (max-width: 760px){ .sh-top { grid-template-columns: 1fr; gap: 24px; align-items: start; } }
-.sh-stat { display: flex; flex-direction: column; gap: clamp(6px,1vw,12px); align-items: flex-start; }
-.shorts-hero .sh-big { font-family: var(--font-display); font-weight: 700; font-size: clamp(150px,25vw,330px); line-height: .76; color: var(--green); letter-spacing: -.03em; margin: 0; }
-/* 'miljoen views' in een gekleurd, schuin balkje */
-.sh-tag { display: inline-block; background: var(--purple-700); border-radius: 9px; padding: .12em .46em; transform: skewX(-9deg); margin-top: clamp(8px,1.2vw,16px); }
-.sh-tag span { display: inline-block; transform: skewX(9deg); font-family: var(--font-display); font-weight: 700; font-size: clamp(28px,3.8vw,58px); line-height: 1; color: var(--paper); letter-spacing: .005em; }
+.sh-stat { display: flex; flex-direction: column; gap: clamp(8px,1.2vw,16px); align-items: flex-start; }
+/* getal + 'miljoen views' samen in één schuin balkje: varsity green vlak, electric purple tekst */
+.sh-badge { display: inline-block; background: var(--green); border-radius: 16px; padding: clamp(16px,2vw,30px) clamp(22px,2.6vw,42px); transform: skewX(-9deg); }
+.sh-badge-in { transform: skewX(9deg); display: flex; flex-direction: column; align-items: flex-start; gap: clamp(2px,.6vw,8px); }
+.shorts-hero .sh-num { font-family: var(--font-display); font-weight: 700; font-size: clamp(120px,20vw,268px); line-height: .76; color: var(--purple-700); letter-spacing: -.03em; }
+.shorts-hero .sh-unit { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px,3.4vw,54px); line-height: .9; color: var(--purple-700); letter-spacing: .005em; }
 .sh-period { font-weight: 700; font-size: clamp(16px,1.6vw,21px); color: var(--grey-700); margin-top: clamp(10px,1.3vw,16px); }
 .sh-side { display: flex; flex-direction: column; gap: clamp(18px,2.4vw,30px); max-width: 540px; }
 .sh-notes { display: flex; flex-direction: column; gap: 10px; }
@@ -638,7 +640,9 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .playbtn.hidden { display: none; }
 
 /* ── 2 balken per kanaal (seizoen 8 + nu, nu groter & goed leesbaar) ── */
-.barpair { margin-bottom: clamp(26px, 3.8vw, 48px); }
+.barpair { padding: clamp(18px,2.4vw,30px) 0; border-bottom: 1px solid rgba(0,75,54,.15); }
+.barpair:first-of-type { padding-top: clamp(6px,1vw,12px); }
+.barpair:last-of-type { border-bottom: none; padding-bottom: 0; }
 .barpair .bp-name { font-weight: 700; font-size: clamp(17px,1.9vw,25px); color: var(--green); margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
 /* vaste getalkolom -> beide banen exact even breed (anders lijkt 'nu' korter) */
 .bp-line { display: grid; grid-template-columns: 122px 1fr 138px; align-items: center; gap: 18px; margin-bottom: 12px; }
@@ -650,11 +654,9 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .bp-fill { height: 100%; width: 0; border-radius: 7px; transition: width 1.7s var(--ease-snap); }
 .bp-fill.old { background: #A7C3B8; }
 .bp-fill.new { background: var(--green); }
-.barpair:not(.strong) .bp-fill.new { background: var(--green-elec); }
 .bp-v { font-family: var(--font-display); font-weight: 700; white-space: nowrap; letter-spacing: -.01em; text-align: right; }
 .bp-v.old { font-size: 17px; color: var(--grey-500); }
 .bp-v.new { font-size: clamp(32px, 3.7vw, 54px); color: var(--green); line-height: .9; }
-.barpair:not(.strong) .bp-v.new { color: var(--green-elec); }
 @media (max-width: 600px){ .bp-line { grid-template-columns: 88px 1fr 92px; gap: 11px; } .bp-v.new { font-size: 30px; } }
 
 /* ── PUBLIEK (gender) on night ──────────────────────────────── */
