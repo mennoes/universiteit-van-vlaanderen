@@ -612,9 +612,9 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 /* vaste getalkolom -> beide banen exact even breed (anders lijkt 'nu' korter) */
 .bp-line { display: grid; grid-template-columns: 46px 1fr 104px; align-items: center; gap: 13px; margin-bottom: 7px; }
 .bp-when { font-size: 12px; font-weight: 700; letter-spacing: .03em; color: var(--grey-500); text-align: right; }
-.bp-track { position: relative; height: 11px; background: var(--paper-mid); border-radius: 6px; }
-.bp-track.tall { height: 24px; }
-.bp-fill { height: 100%; width: 0; border-radius: 6px; transition: width 1.7s var(--ease-snap); }
+.bp-track { position: relative; height: 8px; background: var(--paper-mid); border-radius: 5px; }
+.bp-track.tall { height: 15px; }
+.bp-fill { height: 100%; width: 0; border-radius: 5px; transition: width 1.7s var(--ease-snap); }
 .bp-fill.old { background: #A7C3B8; }
 .bp-fill.new { background: var(--green); }
 .barpair:not(.strong) .bp-fill.new { background: #6FA08F; }
