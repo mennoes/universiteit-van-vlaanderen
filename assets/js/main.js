@@ -21,6 +21,7 @@
     }
     updateParaTargets();
     kickPara();
+    if (typeof updateDeckCount === "function") updateDeckCount();
   }
 
   /* ── smooth (lerp) parallax for decorations ────────────────── */
@@ -268,8 +269,58 @@
     });
   }
 
+  /* ── slidedeck: pijltjestoetsen, teller, fullscreen ─────────── */
+  var slides = [].slice.call(document.querySelectorAll("body > header.hero, body > section, body > footer.site"));
+  var deckCur = document.getElementById("deckCur");
+  var deckTot = document.getElementById("deckTot");
+  if (deckTot) deckTot.textContent = slides.length;
+
+  function currentSlide() {
+    var idx = 0, best = Infinity;
+    for (var i = 0; i < slides.length; i++) {
+      var d = Math.abs(slides[i].getBoundingClientRect().top);
+      if (d < best) { best = d; idx = i; }
+    }
+    return idx;
+  }
+  function goToSlide(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    slides[i].scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  }
+  function updateDeckCount() { if (deckCur && slides.length) deckCur.textContent = currentSlide() + 1; }
+
+  document.addEventListener("keydown", function (e) {
+    var t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+    switch (e.key) {
+      case "ArrowDown": case "ArrowRight": case "PageDown": case " ":
+        e.preventDefault(); goToSlide(currentSlide() + 1); break;
+      case "ArrowUp": case "ArrowLeft": case "PageUp":
+        e.preventDefault(); goToSlide(currentSlide() - 1); break;
+      case "Home": e.preventDefault(); goToSlide(0); break;
+      case "End": e.preventDefault(); goToSlide(slides.length - 1); break;
+      case "f": case "F": toggleFullscreen(); break;
+    }
+  });
+
+  function toggleFullscreen() {
+    if (document.fullscreenElement) {
+      if (document.exitFullscreen) document.exitFullscreen();
+    } else if (document.documentElement.requestFullscreen) {
+      var p = document.documentElement.requestFullscreen();
+      if (p && p.catch) p.catch(function () {});
+    }
+  }
+  var fsBtn = document.getElementById("fsBtn");
+  if (fsBtn) fsBtn.addEventListener("click", toggleFullscreen);
+  var prevBtn = document.querySelector("[data-prev]");
+  var nextBtn = document.querySelector("[data-next]");
+  if (prevBtn) prevBtn.addEventListener("click", function () { goToSlide(currentSlide() - 1); });
+  if (nextBtn) nextBtn.addEventListener("click", function () { goToSlide(currentSlide() + 1); });
+
   /* ── initial paint ─────────────────────────────────────────── */
   refreshPara();
   onScroll();
+  updateDeckCount();
   setTimeout(refreshPara, 400); // re-measure once fonts/images settle
 })();

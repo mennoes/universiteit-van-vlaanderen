@@ -774,3 +774,37 @@ footer.site {
 .deco-icon img { width: 100%; filter: drop-shadow(0 18px 38px rgba(0,0,0,.16)); animation: floaty 9s ease-in-out infinite; }
 .deep .deco-icon img, .night .deco-icon img { filter: drop-shadow(0 22px 46px rgba(0,0,0,.34)); }
 @media (prefers-reduced-motion: reduce){ .deco-icon img { animation: none; } }
+
+/* ══════════════════════════════════════════════════════════════
+   SLIDEDECK MODE — elke sectie = volledig scherm; snap + pijltjes
+   ══════════════════════════════════════════════════════════════ */
+html { scroll-snap-type: y proximity; }
+body > header.hero,
+body > section,
+body > footer.site { scroll-snap-align: start; scroll-snap-stop: always; }
+/* elke inhoud-slide minstens een scherm hoog, inhoud verticaal gecentreerd
+   (min-height i.p.v. height -> lange inhoud groeit gewoon door, nooit afgesneden) */
+section.block,
+.split-photo,
+.trailer,
+.partners,
+.cta-band { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+
+/* deck-bediening rechtsonder */
+.deck-ui {
+  position: fixed; right: 18px; bottom: 18px; z-index: 130;
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(27,7,87,.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 7px;
+}
+.deck-btn {
+  width: 38px; height: 38px; border-radius: 50%; border: none; cursor: pointer;
+  background: rgba(255,255,255,.12); color: var(--paper); display: grid; place-items: center;
+  transition: background .2s var(--ease-snap), transform .2s var(--ease-snap);
+}
+.deck-btn:hover { background: rgba(255,255,255,.26); transform: translateY(-1px); }
+.deck-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.deck-count { font-size: 13px; font-weight: 700; color: var(--paper); padding: 0 7px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.deck-count b { color: var(--purple); }
+@media (max-width: 600px){ .deck-ui { right: 10px; bottom: 10px; } .deck-count { display: none; } }
+@media print { .deck-ui { display: none; } }
