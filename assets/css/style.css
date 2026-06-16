@@ -583,20 +583,19 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 
 /* ── SHORTS hero stat + growth bars ─────────────────────────── */
 .shorts-hero { display: flex; flex-direction: column; gap: clamp(24px,3.4vw,44px); }
-.sh-top { display: grid; grid-template-columns: auto 1fr; gap: clamp(28px,3.6vw,56px); align-items: center; }
+.sh-top { display: grid; grid-template-columns: auto 1fr; gap: clamp(28px,3.6vw,56px); align-items: start; }
 @media (max-width: 760px){ .sh-top { grid-template-columns: 1fr; gap: 24px; align-items: start; } }
 .sh-stat { display: flex; flex-direction: column; gap: clamp(8px,1.2vw,16px); align-items: flex-start; }
-/* getal + 'miljoen views' samen in één schuin balkje: varsity green vlak, electric purple tekst */
-/* twee aparte balken (markeerstift-stijl), elk om hun eigen regel */
-.sh-badges { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 0; }
-.sh-badge-unit { margin-top: clamp(-12px,-1vw,-4px); }
-.sh-badge { display: inline-block; background: var(--green); border-radius: 0; transform: skewX(-9deg); }
-.sh-badge > span { display: inline-block; transform: skewX(9deg); color: var(--purple); font-family: var(--font-display); font-weight: 700; }
+/* twee rechte balken met een kleine speelse rotatie (geen skew) */
+.sh-badges { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 0; transform: rotate(-3deg); transform-origin: center; }
+.sh-unit-col { display: flex; flex-direction: column; align-items: center; margin-top: clamp(-12px,-1vw,-4px); }
+.sh-badge { display: inline-block; background: var(--green); border-radius: 0; }
+.sh-badge > span { display: inline-block; color: var(--purple); font-family: var(--font-display); font-weight: 700; }
 .sh-badge-num { padding: clamp(4px,.6vw,12px) clamp(20px,2.2vw,36px); }
 .sh-badge-unit { padding: clamp(8px,1vw,16px) clamp(18px,2vw,32px); }
 .shorts-hero .sh-num { font-size: clamp(100px,13.5vw,184px); line-height: .78; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .shorts-hero .sh-unit { font-size: clamp(26px,3.2vw,48px); line-height: .9; letter-spacing: .005em; }
-.sh-period { width: 100%; text-align: center; font-weight: 700; font-size: clamp(16px,1.6vw,21px); color: var(--grey-700); margin-top: clamp(10px,1.3vw,16px); }
+.sh-period { text-align: center; font-weight: 700; font-size: clamp(16px,1.6vw,21px); color: var(--grey-700); margin-top: clamp(10px,1.3vw,16px); }
 .sh-side { display: flex; flex-direction: column; gap: clamp(16px,2vw,26px); max-width: 720px; }
 /* de groei t.o.v. vorig jaar prominent: 1,2 mln -> 6,4 mln */
 .sh-vs { font-family: var(--font-sans); font-weight: 700; font-size: clamp(19px,2.1vw,28px); line-height: 1.3; color: var(--green); margin: 0; }
