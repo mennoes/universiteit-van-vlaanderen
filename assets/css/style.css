@@ -781,17 +781,25 @@ footer.site {
 /* Slidedeck alleen op laptop/desktop. Op mobiel: gewoon vrij doorscrollen,
    zodat alle info zichtbaar/bereikbaar is (geen snap die over inhoud springt). */
 @media (min-width: 860px) {
-  html { scroll-snap-type: y proximity; }
+  html { scroll-snap-type: y mandatory; }
   body > header.hero,
   body > section,
   body > footer.site { scroll-snap-align: start; scroll-snap-stop: always; }
-  /* elke inhoud-slide minstens een scherm hoog, inhoud verticaal gecentreerd
-     (min-height i.p.v. height -> lange inhoud groeit gewoon door, nooit afgesneden) */
+  /* elke slide = exact 1 scherm; inhoud verticaal gecentreerd en (indien nodig)
+     door JS geschaald zodat ze altijd binnen het scherm past -> echte deck */
+  header.hero,
   section.block,
   .split-photo,
   .trailer,
-  .partners,
-  .cta-band { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+  .cta-band,
+  footer.site {
+    height: 100svh; min-height: 0; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  section.block, .split-photo, .trailer, .cta-band { padding-top: 0; padding-bottom: 0; }
+  /* slides strak tegen de bovenkant (geen naadje) + geen sticky nav in deck-modus */
+  section.block { scroll-margin-top: 0; }
+  .nav { display: none; }
 }
 
 /* deck-bediening rechtsonder */

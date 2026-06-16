@@ -318,9 +318,35 @@
   if (prevBtn) prevBtn.addEventListener("click", function () { goToSlide(currentSlide() - 1); });
   if (nextBtn) nextBtn.addEventListener("click", function () { goToSlide(currentSlide() + 1); });
 
+  /* ── fit-to-screen: schaal slide-inhoud zodat elke slide in 1 scherm past ── */
+  function fitSlides() {
+    var deck = window.matchMedia("(min-width: 860px)").matches;
+    for (var i = 0; i < slides.length; i++) {
+      var slide = slides[i];
+      var isHero = slide.matches("header.hero");
+      var inner = isHero ? slide.querySelector(".hero-main") : slide.querySelector(".wrap");
+      if (!inner) continue;
+      inner.style.transform = "";
+      if (!deck) continue;
+      var reserve = isHero ? (((slide.querySelector(".hero-top") || {}).offsetHeight || 0) + 56) : 44;
+      var avail = slide.clientHeight - reserve;
+      var nat = inner.scrollHeight;
+      if (nat > avail && avail > 0) {
+        var s = Math.max(0.5, avail / nat);
+        inner.style.transformOrigin = "center center";
+        inner.style.transform = "scale(" + s.toFixed(4) + ")";
+      }
+    }
+  }
+  var fitTimer;
+  function scheduleFit() { clearTimeout(fitTimer); fitTimer = setTimeout(fitSlides, 150); }
+  window.addEventListener("resize", scheduleFit);
+  window.addEventListener("load", fitSlides);
+
   /* ── initial paint ─────────────────────────────────────────── */
+  fitSlides();
   refreshPara();
   onScroll();
   updateDeckCount();
-  setTimeout(refreshPara, 400); // re-measure once fonts/images settle
+  setTimeout(function () { fitSlides(); refreshPara(); }, 450); // re-meten als fonts/beeld geladen zijn
 })();
