@@ -483,10 +483,16 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .rcard .rc-prev { font-size: 14px; color: rgba(244,240,237,.62); margin-top: 14px; }
 .rcard .rc-prev b { color: rgba(244,240,237,.85); font-weight: 700; }
 
-/* ── TELEFOONS: YouTube-video links + Spotify-kanaal rechts ── */
-.phones-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px,6vw,96px); align-items: start; justify-items: center; }
-@media (max-width: 720px){ .phones-row { grid-template-columns: 1fr; gap: 44px; } }
-.phone-col { margin: 0; display: flex; flex-direction: column; align-items: center; gap: clamp(16px,2vw,26px); }
+/* ── LONGFORM: grote cijfers (balken) met speels overlappende telefoons ── */
+.lf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px,6vw,92px); align-items: end; }
+@media (max-width: 820px){ .lf-grid { grid-template-columns: 1fr; gap: 60px; } }
+.lf-item { position: relative; display: flex; flex-direction: column; align-items: center; }
+.lf-item .phone { position: relative; z-index: 2; }
+.lf-card.rcard { position: relative; z-index: 1; width: min(100%, 460px);
+  margin-top: calc(-1 * clamp(40px,5vw,68px)); padding-top: clamp(48px,5.6vw,82px); }
+.lf-card .rc-num { font-size: clamp(72px,10vw,128px); font-variant-numeric: tabular-nums; }
+
+/* telefoon-frame */
 .phone {
   position: relative; width: clamp(208px,23vw,280px); aspect-ratio: 9 / 19;
   background: #111; border-radius: clamp(28px,3vw,40px); padding: clamp(8px,1vw,12px);
@@ -496,13 +502,31 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
   content: ""; position: absolute; top: clamp(8px,1vw,12px); left: 50%; transform: translateX(-50%);
   width: 36%; height: clamp(13px,1.5vw,19px); background: #111; border-radius: 0 0 12px 12px; z-index: 3;
 }
+/* liggende (horizontale) telefoon voor de YouTube-video */
+.phone.landscape { width: clamp(300px,38vw,460px); aspect-ratio: 18 / 9; }
+.phone.landscape::before {
+  top: 50%; left: clamp(8px,1vw,12px); transform: translateY(-50%);
+  width: clamp(13px,1.5vw,19px); height: 34%; border-radius: 0 12px 12px 0;
+}
+.tilt-yt { transform: rotate(-5deg); }
+.tilt-sp { transform: rotate(5deg); }
 .phone-screen { position: relative; width: 100%; height: 100%; border-radius: clamp(20px,2.2vw,30px); overflow: hidden; background: #000; }
 .phone-screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
-.phone-cap { text-align: center; }
-.phone-cap .pc-plat { display: block; font-weight: 700; font-size: clamp(13px,1.3vw,15px); letter-spacing: .08em; text-transform: uppercase; color: var(--green-glow); margin-bottom: 6px; }
-.phone-cap .pc-num { display: block; font-family: var(--font-display); font-weight: 700; font-size: clamp(46px,6vw,84px); line-height: .85; color: var(--paper); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-.phone-cap .pc-prev { display: block; font-size: clamp(13px,1.3vw,15px); color: rgba(244,240,237,.62); margin-top: 10px; }
-.phone-cap .pc-prev b { color: rgba(244,240,237,.85); font-weight: 700; }
+.phone.landscape iframe { pointer-events: none; } /* video is decoratief; geen hover-chrome */
+
+/* eigen, altijd-zichtbare YouTube-achtige overlay (zonder logo/CC/volume) */
+.yt-ui { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 0 clamp(10px,1.4vw,16px) clamp(7px,1vw,11px);
+  background: linear-gradient(transparent, rgba(0,0,0,.62)); pointer-events: none; }
+.yt-scrub { display: block; position: relative; height: 3px; border-radius: 2px; background: rgba(255,255,255,.38); margin-bottom: clamp(7px,.9vw,10px); }
+.yt-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 34%; background: #FF0000; border-radius: 2px; }
+.yt-scrub::after { content: ""; position: absolute; left: 34%; top: 50%; width: clamp(10px,1.1vw,13px); height: clamp(10px,1.1vw,13px); background: #FF0000; border-radius: 50%; transform: translate(-50%,-50%); }
+.yt-row { display: flex; align-items: center; gap: clamp(9px,1.2vw,13px); }
+.yt-pp { width: clamp(9px,1vw,12px); height: clamp(12px,1.4vw,16px); border-left: clamp(3px,.4vw,4px) solid #fff; border-right: clamp(3px,.4vw,4px) solid #fff; box-sizing: border-box; }
+.yt-time { color: #fff; font-family: var(--font-sans); font-weight: 600; font-size: clamp(10px,1vw,13px); letter-spacing: .02em; }
+.yt-fs { margin-left: auto; position: relative; width: clamp(14px,1.6vw,18px); height: clamp(14px,1.6vw,18px); }
+.yt-fs::before, .yt-fs::after { content: ""; position: absolute; width: 38%; height: 38%; border: 2px solid #fff; }
+.yt-fs::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.yt-fs::after { right: 0; bottom: 0; border-left: 0; border-top: 0; }
 
 .rc-cmp { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; }
 .cmp-row { display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 14px; }
@@ -539,7 +563,7 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 @media (max-width: 760px){ .sh-top { grid-template-columns: 1fr; gap: 24px; align-items: start; } }
 .sh-stat { display: flex; flex-direction: column; gap: clamp(8px,1.2vw,16px); align-items: flex-start; }
 /* getal + 'miljoen views' samen in één schuin balkje: varsity green vlak, electric purple tekst */
-.sh-badge { display: inline-block; background: var(--green); border-radius: 16px; padding: clamp(16px,2vw,30px) clamp(22px,2.6vw,42px); transform: skewX(-9deg); }
+.sh-badge { display: inline-block; background: var(--green); border-radius: 0; padding: clamp(16px,2vw,30px) clamp(22px,2.6vw,42px); transform: skewX(-9deg); }
 .sh-badge-in { transform: skewX(9deg); display: flex; flex-direction: column; align-items: flex-start; gap: clamp(2px,.6vw,8px); }
 .shorts-hero .sh-num { font-family: var(--font-display); font-weight: 700; font-size: clamp(120px,20vw,268px); line-height: .76; color: var(--purple); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .shorts-hero .sh-unit { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px,3.4vw,54px); line-height: .9; color: var(--purple); letter-spacing: .005em; }
