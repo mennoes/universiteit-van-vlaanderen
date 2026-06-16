@@ -343,16 +343,39 @@
   window.addEventListener("resize", scheduleFit);
   window.addEventListener("load", fitSlides);
 
-  /* ── autoplay van (gedempte) video's forceren ──────────────── */
-  function playVideos() {
-    [].forEach.call(document.querySelectorAll("video"), function (v) {
-      v.muted = true; v.defaultMuted = true;
-      var p = v.play();
-      if (p && p.catch) p.catch(function () {});
-    });
-  }
-  playVideos();
-  window.addEventListener("load", playVideos);
+  /* ── trailer pas (gedempt) afspelen zodra de slide in beeld komt ─ */
+  (function () {
+    var vid = document.querySelector(".lf-video");
+    if (!vid) return;
+    vid.muted = true; vid.defaultMuted = true;
+    var slide = vid.closest("section") || vid;
+    function tryPlay() { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) tryPlay(); else vid.pause();
+        });
+      }, { threshold: 0.45 });
+      io.observe(slide);
+    } else { tryPlay(); }
+  })();
+
+  /* ── YouTube-overlay live meelopen met de video (tijd + balk) ─ */
+  (function () {
+    var vid = document.querySelector(".lf-video");
+    if (!vid) return;
+    var scrub = document.querySelector(".yt-ui .yt-scrub");
+    var timeEl = document.querySelector(".yt-ui .yt-time");
+    function fmt(s) { s = Math.max(0, Math.floor(s || 0)); var m = Math.floor(s / 60), ss = s % 60; return m + ":" + (ss < 10 ? "0" : "") + ss; }
+    function update() {
+      var d = vid.duration || 0, c = vid.currentTime || 0;
+      if (timeEl) timeEl.textContent = fmt(c) + " / " + fmt(d);
+      if (scrub && d) scrub.style.setProperty("--prog", (Math.min(1, c / d) * 100).toFixed(1) + "%");
+    }
+    vid.addEventListener("timeupdate", update);
+    vid.addEventListener("loadedmetadata", update);
+    update();
+  })();
 
   /* ── initial paint ─────────────────────────────────────────── */
   fitSlides();
