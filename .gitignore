@@ -1,0 +1,10 @@
+# build tooling & scratch (not part of the site)
+node_modules/
+.claude/
+/*.cjs
+/*.png
+/package.json
+/package-lock.json
+/README.md.tmp*
+*.pdf
+design_bundle/
