@@ -256,6 +256,18 @@
     [].slice.call(document.querySelectorAll(".reveal, [data-count], [data-fill], [data-donut], [data-slope]")).forEach(trigger);
   }
 
+  /* ── trailer play button ───────────────────────────────────── */
+  var trailerVid = document.getElementById("trailer");
+  var trailerBtn = document.querySelector(".playbtn");
+  if (trailerVid && trailerBtn) {
+    trailerBtn.addEventListener("click", function () {
+      trailerVid.setAttribute("controls", "controls");
+      var pr = trailerVid.play();
+      if (pr && pr.catch) pr.catch(function () {});
+      trailerBtn.classList.add("hidden");
+    });
+  }
+
   /* ── initial paint ─────────────────────────────────────────── */
   refreshPara();
   onScroll();

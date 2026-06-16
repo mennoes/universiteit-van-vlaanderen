@@ -577,6 +577,43 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .vb-shots .vb:first-child { transform: rotate(-4deg); margin-right: -28px; z-index: 2; }
 .vb-shots .vb:last-child { transform: rotate(3.5deg); margin-top: 26px; }
 
+/* ── TRAILER / MANIFEST VIDEO (kaart over 2-kleuren-splitsing) ── */
+.trailer { background: linear-gradient(180deg, var(--paper-mid) 0 50%, var(--green) 50% 100%); }
+.trailer .wrap { padding: clamp(56px,8vw,108px) 28px; }
+.vcard {
+  position: relative; max-width: 960px; margin: 0 auto; aspect-ratio: 16 / 9;
+  border-radius: 20px; overflow: hidden; background: #000;
+  box-shadow: 0 34px 80px rgba(0,0,0,.30);
+}
+.vcard video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.playbtn {
+  position: absolute; inset: 0; margin: auto;
+  width: clamp(74px, 9vw, 112px); height: clamp(74px, 9vw, 112px);
+  border-radius: 50%; background: var(--white); border: none; cursor: pointer;
+  display: grid; place-items: center; box-shadow: 0 12px 34px rgba(0,0,0,.28);
+  transition: transform .25s var(--ease-snap), background .2s ease;
+}
+.playbtn:hover { transform: scale(1.07); background: var(--paper); }
+.playbtn svg { width: 40%; height: 40%; fill: var(--green); margin-left: 7%; }
+.playbtn.hidden { display: none; }
+
+/* ── 2 balken per kanaal (juni '25 + nu, nu groter) ── */
+.barpair { margin-bottom: clamp(18px, 2.4vw, 28px); }
+.barpair .bp-name { font-weight: 700; font-size: clamp(15px,1.4vw,18px); color: var(--green); margin-bottom: 9px; display: flex; align-items: center; gap: 9px; }
+.bp-line { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 13px; margin-bottom: 7px; }
+.bp-when { font-size: 12px; font-weight: 700; letter-spacing: .03em; color: var(--grey-500); text-align: right; }
+.bp-track { position: relative; height: 11px; background: var(--paper-mid); border-radius: 6px; }
+.bp-track.tall { height: 24px; }
+.bp-fill { height: 100%; width: 0; border-radius: 6px; transition: width 1.7s var(--ease-snap); }
+.bp-fill.old { background: #A7C3B8; }
+.bp-fill.new { background: var(--green); }
+.barpair:not(.strong) .bp-fill.new { background: #6FA08F; }
+.bp-v { font-family: var(--font-display); font-weight: 700; white-space: nowrap; letter-spacing: -.01em; }
+.bp-v.old { font-size: 15px; color: var(--grey-500); }
+.bp-v.new { font-size: clamp(24px, 2.7vw, 38px); color: var(--green); line-height: .9; }
+.barpair:not(.strong) .bp-v.new { color: var(--green-elec); }
+@media (max-width: 600px){ .bp-line { grid-template-columns: 46px 1fr auto; gap: 9px; } }
+
 /* ── PUBLIEK (gender) on night ──────────────────────────────── */
 
 /* ── DISTRIBUTIE channels grid ──────────────────────────────── */
