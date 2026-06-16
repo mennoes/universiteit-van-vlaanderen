@@ -201,7 +201,7 @@ a { color: inherit; }
 }
 .hero-brand {
   display: block; width: clamp(200px, 26vw, 330px); aspect-ratio: 675 / 140;
-  color: var(--paper); margin: 0 0 clamp(16px, 2.2vw, 28px);
+  color: var(--purple); margin: clamp(6px,1.5vw,18px) 0 clamp(34px, 4.5vw, 60px);
 }
 .hero-title {
   font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
@@ -528,6 +528,54 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .slope-to { font-family: var(--font-display); font-weight: 700; font-size: 27px; fill: var(--green-elec); }
 .slope-to.strong { font-size: 32px; fill: var(--green); }
 @media (prefers-reduced-motion: reduce){ .slope-line { transition: none; } }
+
+/* horizontal bar chart — shorts groei (staafdiagram) */
+.bars { display: flex; flex-direction: column; gap: clamp(13px,1.7vw,19px); }
+.bargroup { font-weight: 700; font-size: 14px; letter-spacing: .04em; color: var(--green); margin: 0 0 12px; }
+.bargroup:not(:first-child) { margin-top: 26px; }
+.bargroup span { font-weight: 400; font-size: 13px; color: var(--grey-500); }
+.barrow { display: grid; grid-template-columns: 92px 1fr auto; align-items: center; gap: 16px; }
+@media (max-width: 600px){ .barrow { grid-template-columns: 72px 1fr auto; gap: 11px; } }
+.barrow .b-name { font-weight: 700; font-size: clamp(15px,1.4vw,18px); color: var(--green); }
+.b-track { position: relative; height: 24px; background: var(--paper-mid); border-radius: 7px; }
+.b-fill { height: 100%; width: 0; border-radius: 7px; background: #A7C3B8; transition: width 1.7s var(--ease-snap); }
+.barrow.strong .b-fill { background: var(--green); }
+.b-from { position: absolute; top: -5px; bottom: -5px; width: 3px; background: rgba(0,75,54,.42); border-radius: 2px; z-index: 2; }
+.b-val { display: flex; flex-direction: column; align-items: flex-end; line-height: 1; white-space: nowrap; }
+.b-to { font-family: var(--font-display); font-weight: 700; font-size: clamp(24px,2.7vw,38px); color: var(--green-elec); letter-spacing: -.01em; }
+.barrow.strong .b-to { color: var(--green); }
+.b-fromv { font-size: 12px; color: var(--grey-500); margin-top: 5px; }
+
+/* verdeling: donut + legenda eronder, foto rechts (speels scheef) */
+.donut-row.verd { grid-template-columns: 1fr 1fr; align-items: center; }
+@media (max-width: 820px){ .donut-row.verd { grid-template-columns: 1fr; gap: 44px; } }
+.verd-left { display: flex; flex-direction: column; align-items: center; gap: clamp(22px,2.6vw,34px); }
+.verd-left .donut-wrap { max-width: 320px; }
+.verd-left .legend { width: 100%; max-width: 470px; }
+.verd-photo { display: flex; justify-content: center; }
+.verd-photo img {
+  width: 100%; max-width: 470px; border-radius: 16px; transform: rotate(2.5deg);
+  box-shadow: 0 18px 46px rgba(0,75,54,.18); border: 7px solid var(--white);
+}
+
+/* speels gekaderde foto (video college) */
+.framed-photo { background: var(--paper); padding: clamp(28px,6vw,80px) 0; overflow: hidden; }
+.framed-photo .fp {
+  margin: 0 auto; max-width: 980px; transform: rotate(-2deg);
+  border-radius: 18px; overflow: hidden; border: 9px solid var(--white);
+  box-shadow: 0 24px 64px rgba(0,0,0,.20);
+}
+.framed-photo .fp img { width: 100%; height: clamp(300px, 52vh, 560px); object-fit: cover; display: block; }
+
+/* vooruitblik speelse thumbnails */
+.vb-shots { display: flex; gap: 0; justify-content: center; margin-top: clamp(34px,5vw,60px); }
+.vb-shots .vb {
+  width: clamp(220px, 30vw, 360px); border-radius: 12px; overflow: hidden;
+  border: 7px solid var(--white); box-shadow: 0 16px 40px rgba(0,75,54,.18); background: var(--paper-mid);
+}
+.vb-shots .vb img { width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: cover; }
+.vb-shots .vb:first-child { transform: rotate(-4deg); margin-right: -28px; z-index: 2; }
+.vb-shots .vb:last-child { transform: rotate(3.5deg); margin-top: 26px; }
 
 /* ── PUBLIEK (gender) on night ──────────────────────────────── */
 

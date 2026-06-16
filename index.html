@@ -158,46 +158,52 @@
         <h2>Verdeling<br>per universiteit</h2>
       </div>
 
-      <div class="donut-row">
-        <div class="donut-wrap reveal" data-donut='[
-          {"label":"VUB","value":22.4,"color":"#585FF1"},
-          {"label":"UAntwerpen","value":20.8,"color":"#EE5245"},
-          {"label":"UGent","value":20.4,"color":"#00A879"},
-          {"label":"KU Leuven","value":18.3,"color":"#B970FF"},
-          {"label":"UHasselt","value":18.1,"color":"#004B36"}
-        ]'>
-          <div class="donut-center">
-            <span class="dc-num">5</span>
-            <span class="dc-lab">universiteiten</span>
+      <div class="donut-row verd">
+        <div class="verd-left reveal">
+          <div class="donut-wrap" data-donut='[
+            {"label":"VUB","value":22.4,"color":"#585FF1"},
+            {"label":"UAntwerpen","value":20.8,"color":"#EE5245"},
+            {"label":"UGent","value":20.4,"color":"#00A879"},
+            {"label":"KU Leuven","value":18.3,"color":"#B970FF"},
+            {"label":"UHasselt","value":18.1,"color":"#004B36"}
+          ]'>
+            <div class="donut-center">
+              <span class="dc-num">5</span>
+              <span class="dc-lab">universiteiten</span>
+            </div>
+          </div>
+
+          <div class="legend">
+            <div class="li">
+              <span class="dot" style="background:var(--u-vub)"></span>
+              <span class="lbl">VUB <small>Vrije Universiteit Brussel</small></span>
+              <span class="pct"><span data-count="22.4" data-dec="1" data-suffix="%">0</span></span>
+            </div>
+            <div class="li">
+              <span class="dot" style="background:var(--u-ua)"></span>
+              <span class="lbl">UAntwerpen <small>Universiteit Antwerpen</small></span>
+              <span class="pct"><span data-count="20.8" data-dec="1" data-suffix="%">0</span></span>
+            </div>
+            <div class="li">
+              <span class="dot" style="background:var(--u-ug)"></span>
+              <span class="lbl">UGent <small>Universiteit Gent</small></span>
+              <span class="pct"><span data-count="20.4" data-dec="1" data-suffix="%">0</span></span>
+            </div>
+            <div class="li">
+              <span class="dot" style="background:var(--u-kul)"></span>
+              <span class="lbl">KU Leuven <small>Katholieke Universiteit Leuven</small></span>
+              <span class="pct"><span data-count="18.3" data-dec="1" data-suffix="%">0</span></span>
+            </div>
+            <div class="li">
+              <span class="dot" style="background:var(--u-uh)"></span>
+              <span class="lbl">UHasselt <small>Universiteit Hasselt</small></span>
+              <span class="pct"><span data-count="18.1" data-dec="1" data-suffix="%">0</span></span>
+            </div>
           </div>
         </div>
 
-        <div class="legend reveal d2">
-          <div class="li">
-            <span class="dot" style="background:var(--u-vub)"></span>
-            <span class="lbl">VUB <small>Vrije Universiteit Brussel</small></span>
-            <span class="pct"><span data-count="22.4" data-dec="1" data-suffix="%">0</span></span>
-          </div>
-          <div class="li">
-            <span class="dot" style="background:var(--u-ua)"></span>
-            <span class="lbl">UAntwerpen <small>Universiteit Antwerpen</small></span>
-            <span class="pct"><span data-count="20.8" data-dec="1" data-suffix="%">0</span></span>
-          </div>
-          <div class="li">
-            <span class="dot" style="background:var(--u-ug)"></span>
-            <span class="lbl">UGent <small>Universiteit Gent</small></span>
-            <span class="pct"><span data-count="20.4" data-dec="1" data-suffix="%">0</span></span>
-          </div>
-          <div class="li">
-            <span class="dot" style="background:var(--u-kul)"></span>
-            <span class="lbl">KU Leuven <small>Katholieke Universiteit Leuven</small></span>
-            <span class="pct"><span data-count="18.3" data-dec="1" data-suffix="%">0</span></span>
-          </div>
-          <div class="li">
-            <span class="dot" style="background:var(--u-uh)"></span>
-            <span class="lbl">UHasselt <small>Universiteit Hasselt</small></span>
-            <span class="pct"><span data-count="18.1" data-dec="1" data-suffix="%">0</span></span>
-          </div>
+        <div class="verd-photo reveal d2">
+          <img src="assets/img/photos/event-u-r.jpg" alt="Universiteit van Vlaanderen — bezoekers lopen langs het U-logo">
         </div>
       </div>
     </div>
@@ -254,15 +260,43 @@
         </div>
 
         <div class="reveal d2">
-          <div class="slope" data-slope='[
-            {"name":"Instagram","from":5.5,"to":13.4,"unit":"K","strong":true},
-            {"name":"Facebook","from":8.6,"to":14,"unit":"K","strong":true},
-            {"name":"LinkedIn","from":2.3,"to":3.6,"unit":"K","strong":true},
-            {"name":"TikTok","from":15.7,"to":16.9,"unit":"K","strong":false},
-            {"name":"Spotify","from":57,"to":61,"unit":"K","strong":false},
-            {"name":"YouTube","from":60,"to":65,"unit":"K","strong":false}
-          ]'></div>
-          <p class="src-note">Abonnees/volgers · t.o.v. juni 2025 — sterkste stijgers in donkergroen.</p>
+          <p class="bargroup">Sterkste stijgers <span>(t.o.v. juni 2025)</span></p>
+          <div class="bars">
+            <div class="barrow strong">
+              <div class="b-name">Instagram</div>
+              <div class="b-track"><div class="b-from" style="left:29.1%"></div><div class="b-fill" data-fill="45.4"></div></div>
+              <div class="b-val"><span class="b-to">13,4K</span><span class="b-fromv">van 5,5K</span></div>
+            </div>
+            <div class="barrow strong">
+              <div class="b-name">Facebook</div>
+              <div class="b-track"><div class="b-from" style="left:36.4%"></div><div class="b-fill" data-fill="46.4"></div></div>
+              <div class="b-val"><span class="b-to">14K</span><span class="b-fromv">van 8,6K</span></div>
+            </div>
+            <div class="barrow strong">
+              <div class="b-name">LinkedIn</div>
+              <div class="b-track"><div class="b-from" style="left:18.8%"></div><div class="b-fill" data-fill="23.5"></div></div>
+              <div class="b-val"><span class="b-to">3,6K</span><span class="b-fromv">van 2,3K</span></div>
+            </div>
+          </div>
+          <p class="bargroup">Maar stijgend</p>
+          <div class="bars">
+            <div class="barrow">
+              <div class="b-name">TikTok</div>
+              <div class="b-track"><div class="b-from" style="left:49.1%"></div><div class="b-fill" data-fill="51.0"></div></div>
+              <div class="b-val"><span class="b-to">16,9K</span><span class="b-fromv">van 15,7K</span></div>
+            </div>
+            <div class="barrow">
+              <div class="b-name">Spotify</div>
+              <div class="b-track"><div class="b-from" style="left:93.6%"></div><div class="b-fill" data-fill="96.9"></div></div>
+              <div class="b-val"><span class="b-to">61K</span><span class="b-fromv">van 57K</span></div>
+            </div>
+            <div class="barrow">
+              <div class="b-name">YouTube</div>
+              <div class="b-track"><div class="b-from" style="left:96.1%"></div><div class="b-fill" data-fill="100"></div></div>
+              <div class="b-val"><span class="b-to">65K</span><span class="b-fromv">van 60K</span></div>
+            </div>
+          </div>
+          <p class="src-note">Abonnees/volgers · t.o.v. juni 2025 · het streepje markeert juni 2025.</p>
         </div>
       </div>
     </div>
@@ -306,9 +340,11 @@
     </div>
   </section>
 
-  <!-- ══════════════ PHOTO BAND ══════════════ -->
-  <section class="photo-band" aria-label="Universiteit van Vlaanderen live">
-    <img class="pimg" data-speed="0.8" src="assets/img/photos/stage-green.jpg" alt="Live-college van de Universiteit van Vlaanderen in een volle zaal">
+  <!-- ══════════════ FRAMED PHOTO ══════════════ -->
+  <section class="framed-photo">
+    <div class="wrap">
+      <figure class="fp reveal"><img src="assets/img/photos/event-globe.jpg" alt="Live-evenement van de Universiteit van Vlaanderen"></figure>
+    </div>
   </section>
 
   <!-- ══════════════ 06 · DISTRIBUTIE & PERS ══════════════ -->
@@ -367,6 +403,11 @@
           </ul>
         </article>
 
+      </div>
+
+      <div class="vb-shots reveal">
+        <div class="vb"><img src="assets/img/photos/vooruitblik-1.jpg" alt="De Vooruitblik" onerror="this.parentElement.style.display='none'"></div>
+        <div class="vb"><img src="assets/img/photos/vooruitblik-2.jpg" alt="De Vooruitblik" onerror="this.parentElement.style.display='none'"></div>
       </div>
     </div>
   </section>
