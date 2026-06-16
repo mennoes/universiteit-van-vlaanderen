@@ -344,18 +344,27 @@
   window.addEventListener("load", fitSlides);
 
   /* ── trailer pas (gedempt) afspelen zodra de slide in beeld komt ─
-        en verder spelen waar hij gebleven was (niet opnieuw vanaf 0) ── */
+        en verder spelen waar hij gebleven was (niet opnieuw vanaf 0),
+        ook als de browser de video buiten beeld heeft teruggezet ── */
   (function () {
     var vid = document.querySelector(".lf-video");
     if (!vid) return;
     vid.muted = true; vid.defaultMuted = true;
     var slide = vid.closest("section") || vid;
     var resumeAt = 0;
+    // onthoud doorlopend de positie zolang hij speelt
+    vid.addEventListener("timeupdate", function () { if (!vid.paused && vid.currentTime > 0.05) resumeAt = vid.currentTime; });
+    function seekBack() {
+      if (resumeAt > 0.3 && Math.abs((vid.currentTime || 0) - resumeAt) > 0.6) {
+        try { vid.currentTime = resumeAt; } catch (e) {}
+      }
+    }
     function tryPlay() {
-      try { if (resumeAt && Math.abs((vid.currentTime || 0) - resumeAt) > 1) vid.currentTime = resumeAt; } catch (e) {}
+      if (vid.readyState >= 1) seekBack();
+      else vid.addEventListener("loadedmetadata", seekBack, { once: true });
       var p = vid.play(); if (p && p.catch) p.catch(function () {});
     }
-    function hold() { resumeAt = vid.currentTime || resumeAt; vid.pause(); }
+    function hold() { if (!vid.paused && vid.currentTime > 0.05) resumeAt = vid.currentTime; vid.pause(); }
     if ("IntersectionObserver" in window) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) tryPlay(); else hold(); });
