@@ -492,8 +492,8 @@ section.block.night   { background: var(--purple-deep); color: var(--paper); }
 .lf-stage .takeaways { margin: clamp(30px,4vw,52px) auto 0; max-width: 860px; position: relative; z-index: 1; }
 /* telefoons speels in de hoeken, raken de cijfers niet */
 .lf-stage .lf-phone { position: absolute; z-index: 3; }
-.lf-stage .lf-phone.tilt-yt { left: -20%; top: -12%; transform: rotate(-5deg); animation: floatYt 7s ease-in-out infinite; }
-.lf-stage .lf-phone.tilt-sp { right: -20%; bottom: -2%; transform: rotate(5deg); animation: floatSp 8.5s ease-in-out infinite; }
+.lf-stage .lf-phone.tilt-yt { left: -24%; top: -3%; transform: rotate(-5deg); animation: floatYt 7s ease-in-out infinite; }
+.lf-stage .lf-phone.tilt-sp { right: -20%; bottom: 6%; transform: rotate(5deg); animation: floatSp 8.5s ease-in-out infinite; }
 @keyframes floatYt { 0%,100% { transform: rotate(-5deg) translateY(0); } 50% { transform: rotate(-5deg) translateY(-15px); } }
 @keyframes floatSp { 0%,100% { transform: rotate(5deg) translateY(0); } 50% { transform: rotate(5deg) translateY(-15px); } }
 @media (prefers-reduced-motion: reduce){
